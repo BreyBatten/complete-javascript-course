@@ -137,6 +137,20 @@ Mark and John are trying to compare their BMI (Body Mass Index), which is calcul
 
 GOOD LUCK 😀
 */
+var markMass = 90;
+var johnMass = 85;
+
+var markHeight = 2;
+var johnHeight = 1.9;
+
+var markBMI = markMass / (markHeight * markHeight);
+var johnBMI = johnMass / (johnHeight * johnHeight);
+
+var string = 'Is Mark\'s BMI higher than John\'s?'
+
+var bmi = markBMI < johnBMI;
+console.log(string + " " + bmi);
+
 /*
 var massMark = 78; // kg
 var heightMark = 1.69; // meters
@@ -308,6 +322,28 @@ John and Mike both play basketball in different teams. In the latest 3 games, Jo
 
 GOOD LUCK 😀
 */
+var teamJohn = (89 + 120 + 103) / 3;
+var teamMike = (116 + 94 + 123) / 3;
+var teamMary = (97 + 134 + 105) / 3;
+console.log(teamJohn, teamMike, teamMary);
+
+if (teamJohn > teamMike) {
+    console.log('John\'s team won');
+} else {
+    console.log('Mike\'s team won');
+}
+
+if (teamJohn > teamMike && teamJohn > teamMary) {
+    console.log('John\'s team beat Mike and Mary\'s teams');
+} else if (teamMike > teamJohn && teamMike > teamMary) {
+    console.log('Mike\'s team beat John and Mary\'s teams');
+} else if (teamMary > teamJohn && teamMary > teamMike) {
+    console.log('Mary\'s team beat John and Mike\'s teams');
+} else {
+    console.log('There was a draw');
+}
+
+
 /*
 var scoreJohn = (189 + 120 + 103) / 3;
 var scoreMike = (129 + 94 + 123) / 3;
@@ -449,6 +485,55 @@ In the end, John would like to have 2 arrays:
 (NOTE: To calculate 20% of a value, simply multiply it with 20/100 = 0.2)
 
 GOOD LUCK 😀
+*/
+
+// provides 2 arrays, 1 with tip amount, and 1 with total amount
+// function calculator(bill) {
+//     var percentage;
+//     if (bill < 50) {
+//         percentage = .2
+//     } else if (bill > 50 && bill < 200) {
+//         percentage = .15;
+//     } else {
+//         percentage = .1;
+//     }
+//     return bill * percentage;
+// }
+// console.log(calculator(124));
+
+// var bills = [124, 48, 268];
+// var tips = [
+//     calculator(bills[0]),
+//     calculator(bills[1]),
+//     calculator(bills[2]),
+// ];
+
+// var total = [
+//     bills[0] + tips[0],
+//     bills[1] + tips[1],
+//     bills[2] + tips[2],
+// ];
+// console.log(tips, total);
+
+// my answer, provides 1 array of total cost including tip
+/*
+function calculator(bill) {
+    if (bill < 50) {
+        return bill + (bill * .2);
+    } else if (bill > 50 && bill < 200) {
+        return bill + (bill * .15);
+    } else {
+        return bill + (bill * .1);
+    }
+}
+
+var bills = [124, 48, 268];
+var tips = [
+    calculator(bills[0]),
+    calculator(bills[1]),
+    calculator(bills[2])
+]
+console.log(tips);
 */
 /*
 function tipCalculator(bill) {
@@ -656,6 +741,79 @@ Mark likes to tip 20% of the bill when the bill is less than $100, 10% when the 
 
 GOOD LUCK 😀
 */
+
+var john = {
+    name: 'John',
+    bills: [124, 48, 268, 180, 42],
+    calcTip: function() {
+        this.tips = [];
+        this.finalBill = [];
+
+        for (var i = 0; i < this.bills.length; i++) {
+            var percentage;
+            var bill = this.bills[i];
+
+            if (bill < 50) {
+                percentage = .2
+            } else if (bill >= 50 && bill <= 200) {
+                percentage = .15
+            } else {
+                percentage = .1
+            }
+
+            this.tips[i] = bill * percentage;
+            this.finalBill[i] = bill + bill * percentage
+        }
+    }
+};
+
+var mark = {
+    name: 'Mark',
+    bills: [77, 375, 110, 45],
+    calcTip: function() {
+        this.tips = [];
+        this.finalBill = [];
+
+        for (var i = 0; i < this.bills.length; i++) {
+            var percentage;
+            var bill = this.bills[i];
+
+            if (bill < 100) {
+                percentage = .2
+            } else if (bill >= 100 && bill <= 300) {
+                percentage = .1
+            } else {
+                percentage = .25
+            }
+
+            this.tips[i] = bill * percentage;
+            this.finalBill[i] = bill + bill * percentage;
+        }
+    }
+}
+
+function averageTips(tips) {
+    var sum = 0;
+
+    for (var i = 0; i < tips.length; i++) {
+        sum = sum + tips[i]
+    }
+    return sum / tips.length
+}
+
+john.calcTip();
+mark.calcTip();
+
+john.average = averageTips(john.tips);
+mark.average = averageTips(mark.tips);
+console.log(john, mark);
+
+if (john.average > mark.average) {
+    console.log(john.name + '\'s family pays higher tips, with an average of $' + john.average);
+} else if (mark.average > john.average) {
+    console.log(mark.name + '\'s family pays higher tips, with an average of $' + mark.average);
+}
+
 
 /*
 var john = {
